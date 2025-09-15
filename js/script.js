@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           
       xhr.open('POST', 'mail.php', true);
-      // xhr.send(formData);
+      xhr.send(formData);
 
       thisForm.reset();
     }

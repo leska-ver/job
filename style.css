@@ -877,6 +877,7 @@ footer {
 
   main {
     margin-top: 313px;
+    padding-top: 20px;/* Добавьте это от ИИ */
   }
 
   .contacts__form {

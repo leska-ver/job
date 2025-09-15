@@ -705,10 +705,10 @@
             <input class="contacts__input" type="name" id="name" name="name" data-validate-field="name"> <!-- placeholder="Ваше имя" 13. Связь label и input + атрибут required -->
             <label class="contacts__label" for="email">Ваш email:</label>
             <input class="contacts__input" type="email" id="email" name="email" data-validate-field="email"> <!-- placeholder="Ваш email" 14. Правильный type для email -->
-            <label class="contacts__label" for="tel">Ваш телефон:</label>
-            <input class="contacts__input" type="tel" name="tel" data-validate-field="tel" data-validate-rules="phone" id="tel"><!-- placeholder="Ваш телефон" -->
+            <!--<label class="contacts__label" for="tel">Ваш телефон:</label>
+            <input class="contacts__input" type="tel" name="tel" data-validate-field="tel" data-validate-rules="phone" id="tel"> placeholder="Ваш телефон" -->
             <label class="contacts__label" for="message">Сообщение:</label>
-            <textarea class="contactinputs__textarea" id="message" name="message" data-validate-field="text" rows="5"></textarea>
+            <textarea class="contact__textarea" id="message" name="message" data-validate-field="text" rows="5"></textarea>
           </div>
           <button class="contacts__btn btn" type="submit" value="Отправить">Отправить</button>
         </form>
@@ -722,12 +722,18 @@
 
 
     <!--Для отправки на емайл. jquery-они должны быть выше всех -->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--Маска формы input-ов-->
     <script src="js/inputmask.min.js"></script>
+
+    <!-- Для codepen 
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>-->
+
     <!--Валидатор input-ов-->
     <script src="js/just-validate.min.js"></script>
+
     <script src="js/script.js"></script>
   </body>
 </html>

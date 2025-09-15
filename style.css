@@ -1,0 +1,906 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 4. Правильная блочная модель */
+}
+
+body {
+  min-width: 320px;
+  min-height: 100%;
+  font-family: 'Arial', sans-serif; /* 5. Указание fallback-шрифта */
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+/* отключает поведение изменения размера для textarea(Блок сообщения) */
+textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none; /* 8. Убираем подчеркивание у ссылок */
+}
+
+a:hover {
+  color: #3498db; /* 9. Эффект при наведении */
+}
+
+ul {
+  list-style: none; /* 7. Убираем маркеры у списка */
+}
+
+
+
+.header {
+  background-color: #2c3e50;
+}
+
+.header__top {
+  position: relative;
+  padding: 2rem 0;
+  background: linear-gradient(to right, #2c3e50, #3498db); /* 6. Красивый градиент */
+  color: white;
+  text-align: center;
+  z-index: 22;
+}
+
+.header__bottom {
+  max-width: 1200px; /* 10. Ограничиваем ширину контента */
+  margin: 0 auto;
+  padding: 20px;
+} 
+
+.burger-menu__list {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.burger-menu__item:not(:last-child) {
+    margin-right: 30px;
+}
+
+.burger-menu__link {
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1200px; /* 10. Ограничиваем ширину контента */
+  margin: 2rem auto;
+  padding: 0 20px;
+}
+
+section {
+  background: white;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: 8px; /* 11. Скругляем углы */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 12. Добавляем тень */
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-grid {
+  display: grid;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.item {/* Чтобы они не сжимались на очень узких экранах.*/
+  min-width: 50px;
+}
+
+.tomato {
+  background-color: tomato;  
+}
+
+.yellow {
+  background-color: yellow;  
+}
+
+.green {
+  background-color: green;  
+}
+
+.blue {
+  background-color: blue;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.blueviolet {
+  background-color: blueviolet;
+}
+
+hr {
+  background-color: rgb(229 229 229);
+  margin: 32px 0;
+}
+
+.flexbox__h3.darkgoldenrod {
+  color: darkgoldenrod;
+}
+
+/* Общие стили для flexbox */
+.exercise__block:not(:last-child), .flexbox__block:not(:last-child), .flexbox__flex:not(:last-child) { /*кроме последнего*/
+  margin-bottom: 25px;
+}
+
+.exercise__list {
+  list-style: square;
+}
+
+.flex__list {
+  margin: 0;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  background-color: antiquewhite;
+}
+
+.flexbox__h3 {
+  display: inline;
+  padding: 3px;
+  color: white;
+}
+
+.flexbox__list {
+  list-style: disc;
+}
+
+.flex__item {
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  color: white;
+  line-height: 150px;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* justify-content */
+.justify-content {
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  -o-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.space-around {
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -o-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.space-between {
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.space-evenly {
+  -webkit-justify-content: space-evenly;
+  -moz-justify-content: space-evenly;
+  -o-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+}
+
+.left {
+  -webkit-justify-content: left;
+  -moz-justify-content: left;
+  -o-justify-content: left;
+  -ms-justify-content: left;
+  justify-content: left;
+}
+
+.center {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+
+.right {
+  -webkit-justify-content: right;
+  -moz-justify-content: right;
+  -o-justify-content: right;
+  -ms-justify-content: right;
+  justify-content: right;
+}
+
+/* flex-direction */
+.column {
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -o-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.column-reverse {
+  -webkit-flex-direction: column-reverse;
+  -moz-flex-direction: column-reverse;
+  -o-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+.row {
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -o-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.row-reverse {
+  -webkit-flex-direction: row-reverse;
+  -moz-flex-direction: row-reverse;
+  -o-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+/* flex-wrap */
+.nowrap {
+  -webkit-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.wrap {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.wrap-reverse {
+  -webkit-flex-wrap: wrap-reverse;
+  -moz-flex-wrap: wrap-reverse;
+  -o-flex-wrap: wrap-reverse;
+  -ms-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+/* flex-flow */
+.flexbox__desc {
+  font-size: 12px;
+}
+
+.flexbox__desc span {
+  padding: 3px;
+  color: white;
+}
+
+.flexbox__desc span.darkgoldenrod {
+  color: darkgoldenrod;
+}
+
+.column-wrap-reverse {
+  flex-flow: column wrap-reverse;
+}
+
+.columnWrap-reverse {
+  flex-flow: column-reverse wrap-reverse;
+}
+
+/* align-items */
+.align {
+  width: 100%;
+  height: 320px;
+}
+
+.align .p-normal {
+  font-size: 14px;
+}
+
+.align .p-big {
+  font-size: 1.7rem;
+}
+
+.align .p-small {
+  font-size: .7rem;
+}
+
+.flex__list_heightAuto {
+  height: 100%;
+}
+
+.flex__list_heightAuto .flex__item {/*Сбиваем из-за верхних блоков*/
+  height: auto;/*Для stretch должна быть auto*/
+  font-size: 10px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: start;
+}
+
+.flex__list_heightAuto .align {
+  height: 100%;/*Высоту сбиваем из-за верхних блоков*/
+}
+
+.alignItems-center {
+  align-items: center;  
+}
+
+.alignItems-baseline {
+  align-items: baseline;
+}
+
+.alignItems-flex-end {
+  align-items: flex-end;
+}
+
+.alignItems-stretch {
+  align-items: stretch;
+}
+
+/* align-content */
+.alignContent {
+  gap: 10px;
+  flex-wrap: wrap; /* Это обязательно! */
+  height: 550px; /* Высота должна быть БОЛЬШЕ, чем высота всех строк вместе, чтобы был виден эффект */
+}
+
+.alignContent .flex__item {/*Сбиваем из-за верхних блоков*/
+  height: auto;/*Для stretch должна быть auto*/
+}
+
+.alignContent__stretch {
+  align-content: stretch;
+}
+
+.alignContent__flex-start {
+  align-content: flex-start;
+}
+
+.alignContent__center {
+  align-content: center;
+}
+
+.alignContent__flex-end {
+  align-content: flex-end;
+}
+
+.alignContent__space-between {
+  align-content: space-between;
+}
+
+.alignContent__space-around {
+  align-content: space-around;
+}
+
+.alignContent__space-evenly {
+  align-content: space-evenly;
+}
+
+
+/* Grid */
+.grid__list {
+  background-image: linear-gradient(90deg, rgba(255, 0, 0, 0.2) 1px, transparent 1px), linear-gradient(0deg, rgba(255, 0, 0, 0.2) 1px, transparent 1px);
+  background-size: calc(100px + 10px) calc(100px + 10px);
+  border: 1px solid gray;
+}
+
+.grid__list.brown {
+  border: 1px solid brown;
+}
+
+.grid__list.teal {
+  border: 1px solid teal;
+}
+
+.grid__list.indigo {
+  border: 1px solid indigo;
+}
+
+.grid__list.olive {
+  border: 1px solid olive;
+}
+
+.grid__list.orangered {
+  border: 1px solid rgb(240, 120, 41);
+}
+
+.grid__list:not(:last-child) { /*кроме последнего*/
+  margin-bottom: 10px;
+}
+
+.grid__list_columnsRows {
+  /* Будет создано 3 колонки*/ 
+  grid-template-columns: 150px auto 40%;
+  /* Будет создано 3 ряда */
+  grid-template-rows: 250px 10vw 5rem;
+}
+
+.grid__list_startName {
+  grid-template-columns: [start] 125px [line2] 400px [line3] 230px [end];
+  grid-template-rows: [row1-start] 5rem [row1-end] 20vh [last];
+}
+
+.grid__list_repeat {
+  grid-template-columns: repeat(3, 250px);
+}
+
+.grid__list_repeatFr {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid__list_repeatPx {
+  grid-template-columns: 1fr 200px 1fr;
+}
+
+.grid__list_repeatFill {
+  grid-template-columns: repeat(auto-fill, 100px);
+}
+
+.grid__list_repeatFill_minmax {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.grid__list_repeatfit {
+  grid-template-columns: repeat(auto-fit, 100px);
+}
+
+.grid__list_repeatfit_minmax {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+} 
+
+.grid__list_auto {
+  /* Три колонки */
+  grid-template-columns: auto auto auto;
+  /* Два ряда */
+  grid-template-rows: auto auto;
+  /* Автоматическое размещение в ряд */
+  grid-auto-flow: row;
+  /* Отступы между ячейками */
+  gap: 20px;
+  background-image: linear-gradient(90deg, greenyellow 1px, transparent 1px), linear-gradient(0deg, greenyellow 1px, transparent 1px);
+}
+
+.grid__list_auto .grid__item:nth-child(3) {
+  /* Занимает один ряд и
+  растягивается на две колонки */
+  grid-column: span 2;
+}
+
+.grid__list_auto_dense {
+    /* Автоматическое размещение в ряд */
+    grid-auto-flow: row dense;
+}
+
+.grid__list_auto_column {
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  /* Автоматическое размещение в колонку */
+  grid-auto-flow: column;
+}
+
+.grid__list_auto_column .grid__item:nth-child(3) {
+  /* Занимает один ряд и
+  растягивается на две колонки */
+  grid-row: span 2;
+}
+
+.grid__list_auto_column.dense {
+  /* Автоматическое размещение в ряд */
+  grid-auto-flow: column dense;
+}
+
+.grid__list_areas {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "header header header"
+    "content content main"
+    "content content ."
+    "footer footer footer";
+  gap: 20px;
+  background-image: linear-gradient(90deg, rgb(195, 159, 221) 1px, transparent 1px), linear-gradient(0deg, rgb(195, 159, 221) 1px, transparent 1px);  
+}
+
+.grid__list_areas .grid__item:nth-child(1) {
+  grid-area: header;
+}
+
+.grid__list_areas .grid__item:nth-child(2) {
+  grid-area: content;
+}
+
+.grid__list_areas .grid__item:nth-child(3) {
+  grid-area: main;
+}
+
+.grid__list_areas .grid__item:nth-child(4) {
+  grid-area: footer;
+}
+
+.grid__list_shortcut {
+  grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+  background-image: linear-gradient(90deg, rgb(195, 159, 221) 1px, transparent 1px), linear-gradient(0deg, rgb(195, 159, 221) 1px, transparent 1px);
+}
+
+.grid__list_shortcut_Tak {
+  grid-template:
+    [row1-start] "header header header" 1fr [row1-end]
+    [row2-start] "footer footer footer" 1fr [row2-end]
+    / auto 50px auto;
+}
+
+.grid__list_gap {
+  grid-template-columns: 1fr 350px 1fr;
+  grid-template-rows: repeat(3, 150px);
+  /* Отступы между рядами */
+  row-gap: 50px;
+  /* Отступы между колонками */
+  column-gap: 20px;
+  background-image: linear-gradient(90deg, rgb(139, 139, 5) 1px, transparent 1px), linear-gradient(0deg, rgb(139, 139, 5) 1px, transparent 1px);
+}
+
+/* justify-items */
+.grid__list_justifyItems, .grid__list_alignItems, .grid__list_placeItems {
+  grid-template-columns: 1fr 400px 1fr;
+  grid-template-rows: repeat(3, 170px);
+  gap: 20px;
+}
+
+.grid__list_justifyItems .grid__item, .grid__list_alignItems .grid__item, .grid__list_placeItems .grid__item {
+  min-width: 300px;
+}
+
+.grid__list_justifyItems_start {
+  justify-items: start;
+}
+
+.grid__list_justifyItems_end {
+  justify-items: end;
+}
+
+.grid__list_justifyItems_center {
+  justify-items: center;
+}
+
+.grid__list_justifyItems_stretch {
+  justify-items: stretch;
+}
+
+/* align-items */
+.grid__list_alignItems_start {
+  align-items: start;
+}
+
+.grid__list_alignItems_end {
+  align-items: end;
+}
+
+.grid__list_alignItems_center {
+  align-items: center;
+}
+
+.grid__list_alignItems_stretch {
+  align-items: stretch;
+}
+
+/* place-items */
+.grid__list_placeItems {
+  place-items: stretch end;
+}
+
+.grid__item {
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.grid__item:nth-child(odd) {
+  background: #FFAE5D;
+}
+.grid__item:nth-child(even) {
+  background: #FF7A5A;
+}
+
+.grid__h3 {
+  margin-bottom: 10px;
+}
+
+.grid__h3.gray {
+  color: gray;
+  text-decoration: underline gray;
+}
+
+.grid__h3.brown {
+  color: brown;
+  text-decoration: underline brown;
+}
+
+.grid__h3.teal {
+  color: teal;
+  text-decoration: underline teal;
+}
+
+.grid__h3.indigo {
+  color: indigo;
+  text-decoration: underline indigo;
+}
+
+.grid__h3.olive {
+  color: olive;
+  text-decoration: underline olive;
+}
+
+.grid__h3.orangered {
+  color: rgb(240, 120, 41);
+  text-decoration: underline rgb(240, 120, 41);
+}
+
+.grid__desc {
+  margin-bottom: 10px;
+}
+
+.grid__pre {
+  color: #5c0eee;
+}
+
+
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+/* Стили для формы */
+.contacts__form {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.contacts__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts__label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.contacts__input, .contacts__textarea {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.contacts__btn {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  width: max-content;
+  color: white;
+  background: #3498db;
+  cursor: pointer;
+}
+
+.contacts__btn:hover {
+  background: #2980b9;
+}
+
+/*Для формы отправки*/
+.contacts__form {
+  position: relative;
+}
+
+.js-validate-error-label {
+  position: absolute;
+  right: 5px;
+  top: 100%;
+}
+/* // Для формы отправки*/
+
+/***Стилазация фразы ошибки***/
+.contacts__label {
+  /*общий*/
+  position: relative;
+}
+
+.js-validate-error-label {
+  position: absolute;
+  top: -7px;
+  left: 3px;
+  display: none;/* В этом проекте он не нужен! */
+}
+/***Конец стилазация фразы ошибки***/
+
+
+@media (max-width: 1750px) {
+  .main {
+    width: 90%;
+  }
+}  
+
+@media (max-width: 666px) {
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .header__top h1 {
+    width: 335px;
+    margin: 0 auto;
+  }
+
+  .header__bottom {
+    padding: 0;
+  }
+
+  .burger-menu__list {
+    display: block;
+    padding: 50px 0;
+  }
+
+  .burger-menu__item:not(:last-child) {
+    margin: 0 0 15px 0;
+  }
+
+  .burger-menu__button {
+    /* position: fixed;     */
+    position: relative;
+    left: 10px;
+    z-index: 30;
+    display: block;
+    width: 80px;
+    height: 80px;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
+  }
+  .burger-menu__button:hover .burger-menu__lines {
+    filter: brightness(0.7);
+  }
+
+  .burger-menu__lines::before,
+  .burger-menu__lines::after,
+  .burger-menu__lines {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background-color: #fff;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .burger-menu__lines {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .burger-menu__lines::before {
+    content: '';
+    top: -12px;
+  }
+  .burger-menu__lines::after {
+    content: '';
+    top: 12px;
+  }
+
+  .burger-menu__active .burger-menu__lines {
+    background-color: transparent;
+  }
+  .burger-menu__active .burger-menu__lines::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .burger-menu__active .burger-menu__lines::after{
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .burger-menu__nav {
+    position: fixed;
+    top: -1000%;
+    display: flex;
+    flex-flow: column;
+    margin: 150px 0 0 -20px;
+    padding-top: 80px;
+    height: 100%;
+    background-color: #2c3e50;
+    overflow-y: auto;
+    z-index: 20;
+    -webkit-transition: 0.8s;
+    -moz-transition: 0.8s;
+    -o-transition: 0.8s;
+    transition: 0.8s;
+  }
+
+  .burger-menu__active .burger-menu__nav {
+    top: 0;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .burger-menu__link {
+    padding: 30px;
+    font-family: sans-serif;
+    font-size: clamp(14px, 5vw, 32px);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;    
+  }
+
+  .burger-menu__link:hover {
+    filter: brightness(0.7);
+  }
+
+  .burger-menu__overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+  .burger-menu__active .burger-menu__overlay {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  main {
+    margin-top: 313px;
+  }
+
+  .contacts__form {
+    margin: 0 auto;
+    width: 95%;
+    z-index: -1;
+  }
+}
+
+
+@media (max-width: 353px) {
+  .header__top h1 {
+    width: 100%;
+  }
+
+  .burger-menu__nav {
+    margin: 160px 0 0 -20px;
+  }  
+
+  .burger-menu__button {
+    left: 0;
+  }  
+
+  main {
+    margin-top: 333px;
+  }
+}

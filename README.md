@@ -6,3 +6,6 @@ https://leska-ver.github.io/job/
 - list.php
 - mail.php
 <br>
+
+<h2>Убрали PHPMailerAutoload.php<h2>
+Теперь папку PHPMailer не надо скачивать, просто в файле mail.php используйте простой код без PHPMailer.

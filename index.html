@@ -13,14 +13,9 @@
     <meta property="og:image" content="картинка для поисковиков ссылка">
     <meta name="keywords" content="ИИ, уроки, домашка">
     <!-- //Для поиска в сети-->
-     <!-- Для codepen. Подключаем библиотеки ПЕРВЫМИ 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.9/dist/inputmask.min.js"></script>
-    <script src="https://unpkg.com/just-validate@1.5.2/dist/just-validate.production.min.js"></script>-->
     <!-- Подключаем библиотеки через CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/just-validate@1.5.0/dist/just-validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
     <title>Мой сайт-визитка</title> <!-- 3. Title в head -->
     <link rel="stylesheet" href="style.css">
   </head>
@@ -32,7 +27,7 @@
       </div>
       <div class="header__bottom burger-menu">
         <a href="" class="burger-menu__button">
-          <spun class="burger-menu__lines"></spun>
+          <span class="burger-menu__lines"></span>
         </a>
         <nav class="burger-menu__nav">
           <ul class="burger-menu__list">
@@ -713,15 +708,12 @@
             <input class="contacts__input" type="text" id="name" name="name" data-validate-field="name" required> <!-- placeholder="Ваше имя" 13. Связь label и input + атрибут required -->
             <label class="contacts__label" for="email">Ваш email:</label>
             <input class="contacts__input" type="email" id="email" name="email" data-validate-field="email" required> <!-- placeholder="Ваш email" 14. Правильный type для email -->
-            <!--<label class="contacts__label" for="tel">Ваш телефон:</label>
-            <input class="contacts__input" type="tel" name="tel" data-validate-field="tel" data-validate-rules="phone" id="tel"> placeholder="Ваш телефон" -->
             <label class="contacts__label" for="message">Сообщение:</label>
             <textarea class="contact__textarea" id="message" name="message" data-validate-field="text" rows="5" required></textarea>
           </div>
           <button class="contacts__btn btn" type="submit" value="Отправить">Отправить</button>
         </form>
       </section>
-      <hr>
     </main>
     <footer>
       <p>&copy; 2025 Мой сайт-визитка. Все права защищены.</p> <!-- 15. Символ копирайта -->
@@ -729,14 +721,7 @@
 
 
 
-    <!--Для отправки на емайл. jquery-они должны быть выше всех -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-    <!--Маска формы input-ов-->
-    <!-- <script src="js/inputmask.min.js"></script> -->
-
-    <!--Валидатор input-ов-->
-    <!-- <script src="js/just-validate.min.js"></script> -->
+    
 
     <script src="js/script.js"></script>
   </body>

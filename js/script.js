@@ -1,153 +1,203 @@
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOM загружен!');
 
-
-  // inputmask - Телефон //
-  // ИСПРАВЛЕНИЕ 1: Правильный селектор формы
   const form = document.querySelector('.contacts__form');
   if (!form) {
-      console.error('Форма не найдена! Проверьте селектор');
-      return;
+    console.error('Форма не найдена!');
+    return;
   }
 
-  // ИСПРАВЛЕНИЕ 2: Проверка загрузки библиотек
-  if (typeof Inputmask !== 'undefined') {
-      // Inputmask для телефона (раскомментируйте когда нужно)
-      // const telSelector = form.querySelector('input[type="tel"]');
-      // if (telSelector) {
-      //     const inputMask = new Inputmask('+7 (999) 999-99-99');
-      //     inputMask.mask(telSelector);
-      // }
-  } else {
-      console.error('Inputmask не загружен!');
-  }
+  console.log('Настраиваю простую форму...');
 
-  // ИСПРАВЛЕНИЕ 3: Правильная инициализация JustValidate
-  if (typeof JustValidate !== 'undefined') {
-      const validation = new JustValidate('.contacts__form', {
-          colorWrong: '#ff0f0f',
-          messages: {
-              name: {
-                  required: 'Введите имя',
-                  minLength: 'Введите 3 и более символов',
-                  maxLength: 'Запрещено вводить более 15 символов'
-              },
-              email: {
-                  email: 'Введите корректный email',
-                  required: 'Введите email'
-              },
-              text: {
-                  required: 'Введите сообщение',
-                  minLength: 'Введите 15 и более символов',
-                  maxLength: 'Запрещено вводить более 1000 символов'
-              }
-          },
-          submitHandler: function (thisForm) {
-              let formData = new FormData(thisForm);
-              let xhr = new XMLHttpRequest();
+  // Создаем контейнер для ошибок
+  const createErrorLabel = (input, message) => {
+    // Удаляем старую ошибку
+    const oldError = input.parentNode.querySelector('.custom-error');
+    if (oldError) oldError.remove();
 
-              // Сохраняем ссылку на форму и кнопку
-              const submitBtn = thisForm.querySelector('button[type="submit"]');
-              const originalText = submitBtn.textContent;
-              const originalBackground = submitBtn.style.background;
+    // Создаем новую ошибку
+    const error = document.createElement('div');
+    error.className = 'custom-error';
+    //Спрятали запись Оибки(Введите сообщение)
+    error.style.color = 'transparent';
+    error.style.fontSize = '0px';
+    error.style.marginTop = '0px';
+    error.textContent = message;
+    
+    input.parentNode.appendChild(error);
+    return error;
+  };
 
-              xhr.onreadystatechange = function () {
-                  if (xhr.readyState === 4) {
-                      if (xhr.status === 200) {
-                          /* alert('Сообщение успешно отправлено!');
-                          thisForm.reset();*/
-                          // console.log('Отправлено');
-                          
-                          // Успешная отправка
-                          submitBtn.textContent = '✅ Отправлено!';
-                          submitBtn.style.background = '#4CAF50';
-                          
-                          // Вернуть исходный текст через 3 секунды
-                          setTimeout(() => {
-                              submitBtn.textContent = originalText;
-                              submitBtn.style.background = originalBackground;
-                          }, 3000);
-                          
-                          thisForm.reset();
-                      } else {
-                          // Ошибка отправки (сервер вернул ошибку)
-                          console.error('Ошибка отправки формы. Статус:', xhr.status);
-                          submitBtn.textContent = '❌ Ошибка!';
-                          submitBtn.style.background = '#ff4757';
-                          
-                          // Вернуть исходный текст через 3 секунды 
-                          setTimeout(() => {
-                              submitBtn.textContent = originalText;
-                              submitBtn.style.background = originalBackground;
-                          }, 3000);
-                      }
-                  }
-              };
+  // Убираем ошибку
+  const removeError = (input) => {
+    const error = input.parentNode.querySelector('.custom-error');
+    if (error) error.remove();
+  };
 
-              xhr.onerror = function() {
-                  // Ошибка сети (нет соединения, CORS и т.д.)
-                  console.error('Ошибка сети при отправке формы');
-                  submitBtn.textContent = '❌ Ошибка сети!';
-                  submitBtn.style.background = '#ff4757';
-                  
-                  // Вернуть исходный текст через 3 секунды
-                  setTimeout(() => {
-                      submitBtn.textContent = originalText;
-                      submitBtn.style.background = originalBackground;
-                  }, 3000);
-              };
-              
-              xhr.open('POST', 'mail.php', true);
-              xhr.send(formData);
-          }
-      });
+  // Подсветка поля
+  const highlightField = (input, isValid) => {
+    if (isValid) {
+      input.classList.remove('custom-error-field');
+      input.classList.add('custom-success-field');
+    } else {
+      input.classList.remove('custom-success-field');
+      input.classList.add('custom-error-field');
+    }
+  };
 
-      // Добавляем правила валидации
-      validation
-          .addField('#name', [
-              { rule: 'required', errorMessage: 'Введите имя' },
-              { rule: 'minLength', value: 3, errorMessage: 'Минимум 3 символа' },
-              { rule: 'maxLength', value: 15, errorMessage: 'Максимум 15 символов' }
-          ])
-          .addField('#email', [
-              { rule: 'required', errorMessage: 'Введите email' },
-              { rule: 'email', errorMessage: 'Неверный формат email' }
-          ])
-          .addField('#message', [
-              { rule: 'required', errorMessage: 'Введите сообщение' },
-              { rule: 'minLength', value: 15, errorMessage: 'Минимум 15 символов' },
-              { rule: 'maxLength', value: 1000, errorMessage: 'Максимум 1000 символов' }
-          ]);
-  } else {
-      console.error('JustValidate не загружен!');
-  }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nameInput = this.querySelector('#name');
+    const emailInput = this.querySelector('#email');
+    const messageInput = this.querySelector('#message');
+    
+    let isValid = true;
 
-  // Бургер-меню ставим ниже 
-  function burgerMenu(selector) {
-      let menu = $(selector);
-      if (menu.length === 0) return;
+    // Валидация имени
+    removeError(nameInput);
+    if (!nameInput.value.trim()) {
+      createErrorLabel(nameInput, 'Введите имя');
+      highlightField(nameInput, false);
+      isValid = false;
+    } else if (nameInput.value.length < 3) {
+        createErrorLabel(nameInput, 'Минимум 3 символа');
+        highlightField(nameInput, false);
+        isValid = false;
+    } else if (nameInput.value.length > 15) {
+        createErrorLabel(nameInput, 'Максимум 15 символов');
+        highlightField(nameInput, false);
+        isValid = false;
+    } else {
+        highlightField(nameInput, true);
+    }
 
-      let button = menu.find('.burger-menu__button, .burger-menu__lines');
-      let links = menu.find('.burger-menu__link');
-      let overlay = menu.find('.burger-menu__overlay');
-      
-      button.on('click', (e) => {
-          e.preventDefault();
-          toggleMenu();
-      });
-      
-      links.on('click', () => toggleMenu());
-      overlay.on('click', () => toggleMenu());
-      
-      function toggleMenu(){
-          menu.toggleClass('burger-menu__active');
-          
-          if (menu.hasClass('burger-menu__active')) {
-              $('body').css('overflow', 'hidden');
-          } else {
-              $('body').css('overflow', 'visible');
-          }
+    // Валидация email
+    removeError(emailInput);
+    const emailValue = emailInput.value.trim();
+
+    if (!emailValue) {
+      createErrorLabel(emailInput, 'Введите email');
+      highlightField(emailInput, false);
+      isValid = false;
+    } else if (!isValidEmail(emailValue)) { // Используем функцию проверки
+      createErrorLabel(emailInput, 'Неверный формат email');
+      highlightField(emailInput, false);
+      isValid = false;
+    } else {
+      highlightField(emailInput, true);
+    }
+
+    // Добавляем функцию проверки email
+    function isValidEmail(email) {
+      // Более строгое регулярное выражение для проверки email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Валидация сообщения
+    removeError(messageInput);
+    if (!messageInput.value.trim()) {
+      createErrorLabel(messageInput, 'Введите сообщение');
+      highlightField(messageInput, false);
+      isValid = false;
+    } else if (messageInput.value.length < 15) {
+        createErrorLabel(messageInput, 'Минимум 15 символов');
+        highlightField(messageInput, false);
+        isValid = false;
+    } else if (messageInput.value.length > 1000) {
+        createErrorLabel(messageInput, 'Максимум 1000 символов');
+        highlightField(messageInput, false);
+        isValid = false;
+    } else {
+        highlightField(messageInput, true);
+    }
+
+    if (!isValid) return;
+
+    // Отправка формы
+    let formData = new FormData(this);
+    let submitBtn = this.querySelector('button[type="submit"]');
+    
+    submitBtn.textContent = 'Отправка...';
+    submitBtn.disabled = true;
+    
+    // Добавляем случайный параметр к URL чтобы избежать кэширования
+    const url = 'mail.php?' + new Date().getTime();
+
+    fetch(url, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
       }
-  }
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Ответ:', data);
+      
+      if (data === '1') {
+        submitBtn.textContent = '✅ Отправлено!';
+        this.reset();
+        // Сбрасываем подсветку
+        document.querySelectorAll('.contacts__input, .contact__textarea').forEach(input => {
+          input.classList.remove('custom-error-field', 'custom-success-field');
+        });
+      } else {
+          submitBtn.textContent = '❌ Ошибка!';
+      }
+      
+      setTimeout(() => {
+        submitBtn.textContent = 'Отправить';
+        submitBtn.disabled = false;
+      }, 3000);
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      submitBtn.textContent = '❌ Ошибка!';
+      submitBtn.disabled = false;
+    });
+  });
+
   
+  
+  
+  
+  // ==================== БУРГЕР-МЕНЮ ставим ниже ==================== 
+  function burgerMenu(selector) {
+    let menu = $(selector);
+    if (menu.length === 0) {
+      console.error('Бургер-меню не найдено!');
+      return;
+    }
+
+    let button = menu.find('.burger-menu__button, .burger-menu__lines');
+    let links = menu.find('.burger-menu__link');
+    let overlay = menu.find('.burger-menu__overlay');
+
+    button.on('click', (e) => {
+      e.preventDefault();
+      toggleMenu();
+    });
+
+    links.on('click', () => toggleMenu());
+    overlay.on('click', () => toggleMenu());
+
+    function toggleMenu(){
+      menu.toggleClass('burger-menu__active');
+
+      if (menu.hasClass('burger-menu__active')) {
+        $('body').css('overflow', 'hidden');
+      } else {
+          $('body').css('overflow', 'visible');
+        }
+    }
+  }
+
+  // Запускаем бургер-меню
   burgerMenu('.burger-menu');
+  console.log('Бургер-меню инициализировано!');
+
+
+  
 });

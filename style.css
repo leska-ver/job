@@ -714,12 +714,6 @@ footer {
 .contacts__form {
   position: relative;
 }
-
-.js-validate-error-label {
-  position: absolute;
-  right: 5px;
-  top: 100%;
-}
 /* // Для формы отправки*/
 
 /***Стилазация фразы ошибки***/
@@ -728,11 +722,24 @@ footer {
   position: relative;
 }
 
-.js-validate-error-label {
-  position: absolute;
-  top: -7px;
-  left: 3px;
-  display: none;/* В этом проекте он не нужен! */
+/* Стили для валидации (ЗАМЕНИТЕ just-validate на custom-) */
+.custom-error-label {
+  color: #ff0f0f;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.custom-error-field {
+  border: 1px solid #ff0f0f;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+  background-color: #fff0f0;
+}
+
+.custom-success-field {
+  border: 1px solid #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  background-color: #f0fff0;
 }
 /***Конец стилазация фразы ошибки***/
 
@@ -781,6 +788,7 @@ footer {
     -o-transition: .4s;
     transition: .4s;
   }
+
   .burger-menu__button:hover .burger-menu__lines {
     filter: brightness(0.7);
   }
@@ -797,15 +805,18 @@ footer {
     -o-transition: 0.4s;
     transition: 0.4s;
   }
+
   .burger-menu__lines {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
   .burger-menu__lines::before {
     content: '';
     top: -12px;
   }
+
   .burger-menu__lines::after {
     content: '';
     top: 12px;
@@ -814,11 +825,13 @@ footer {
   .burger-menu__active .burger-menu__lines {
     background-color: transparent;
   }
+
   .burger-menu__active .burger-menu__lines::before {
     top: 0;
     transform: rotate(45deg);
   }
-  .burger-menu__active .burger-menu__lines::after{
+
+  .burger-menu__active .burger-menu__lines::after {
     top: 0;
     transform: rotate(-45deg);
   }
@@ -870,6 +883,7 @@ footer {
     height: 100%;
     z-index: 10;
   }
+  
   .burger-menu__active .burger-menu__overlay {
     display: block;
     background-color: rgba(0, 0, 0, 0.5);

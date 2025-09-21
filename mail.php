@@ -1,4 +1,9 @@
 <?php
+  // Предотвращение кэширования
+  header("Cache-Control: no-cache, no-store, must-revalidate");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+
   // Включение отображения ошибок для отладки
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
@@ -40,7 +45,7 @@
     // Отправка email на ВАШИ email адреса из формы
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: 77job.site <no-reply@77job.site>\r\n";
+    $headers .= "From: 77job.site <no-reply@77job.site>\r\n";//77job.site - мой сайт 
     $headers .= "Reply-To: $name <$email>\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $headers .= "X-Priority: 1\r\n";

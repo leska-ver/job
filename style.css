@@ -51,20 +51,97 @@ ul {
   padding: 20px;
 } 
 
-.burger-menu__list {
+.header__list {
   display: flex;
   justify-content: center;
   padding: 0.5rem 0;
 }
 
-.burger-menu__item:not(:last-child) {
+.header__item:not(:last-child) {
     margin-right: 30px;
 }
 
-.burger-menu__link {
+.header__link {
   color: white;
   font-weight: bold;
 }
+
+.burger {
+  /* position: fixed;     */
+  position: relative;
+  left: 10px;
+  z-index: 30;
+  display: none;
+  width: 80px;
+  height: 80px;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s;
+}
+
+.burger:hover .burger__lines {
+  filter: brightness(0.7);
+}
+
+.burger__lines::before,
+.burger__lines::after,
+.burger__lines {
+  position: absolute;
+  width: 40px;
+  height: 6px;
+  background-color: #fff;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.burger__lines {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.burger__lines::before {
+  content: '';
+  top: -12px;
+}
+
+.burger__lines::after {
+  content: '';
+  top: 12px;
+}
+
+.burger__active .burger__lines {
+  background-color: transparent;
+}
+
+.burger__active .burger__lines::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.burger__active .burger__lines::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.header__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.burger__active .header__overlay {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 main {
   max-width: 1200px; /* 10. Ограничиваем ширину контента */
@@ -766,77 +843,20 @@ footer {
     padding: 0;
   }
 
-  .burger-menu__list {
+  .header__list {
     display: block;
     padding: 50px 0;
   }
 
-  .burger-menu__item:not(:last-child) {
+  .header__item:not(:last-child) {
     margin: 0 0 15px 0;
   }
 
-  .burger-menu__button {
-    /* position: fixed;     */
-    position: relative;
-    left: 10px;
-    z-index: 30;
+  .burger {
     display: block;
-    width: 80px;
-    height: 80px;
-    -webkit-transition: .4s;
-    -moz-transition: .4s;
-    -o-transition: .4s;
-    transition: .4s;
-  }
+  }  
 
-  .burger-menu__button:hover .burger-menu__lines {
-    filter: brightness(0.7);
-  }
-
-  .burger-menu__lines::before,
-  .burger-menu__lines::after,
-  .burger-menu__lines {
-    position: absolute;
-    width: 40px;
-    height: 6px;
-    background-color: #fff;
-    -webkit-transition: 0.4s;
-    -moz-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-  }
-
-  .burger-menu__lines {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .burger-menu__lines::before {
-    content: '';
-    top: -12px;
-  }
-
-  .burger-menu__lines::after {
-    content: '';
-    top: 12px;
-  }
-
-  .burger-menu__active .burger-menu__lines {
-    background-color: transparent;
-  }
-
-  .burger-menu__active .burger-menu__lines::before {
-    top: 0;
-    transform: rotate(45deg);
-  }
-
-  .burger-menu__active .burger-menu__lines::after {
-    top: 0;
-    transform: rotate(-45deg);
-  }
-
-  .burger-menu__nav {
+  .header__nav {
     position: fixed;
     top: -1000%;
     display: flex;
@@ -853,7 +873,7 @@ footer {
     transition: 0.8s;
   }
 
-  .burger-menu__active .burger-menu__nav {
+  .burger__active .header__nav {
     top: 0;
     -webkit-transition: 0.4s;
     -moz-transition: 0.4s;
@@ -861,7 +881,7 @@ footer {
     transition: 0.4s;
   }
 
-  .burger-menu__link {
+  .header__link {
     padding: 30px;
     font-family: sans-serif;
     font-size: clamp(14px, 5vw, 32px);
@@ -870,23 +890,8 @@ footer {
     font-weight: bold;    
   }
 
-  .burger-menu__link:hover {
+  .header__link:hover {
     filter: brightness(0.7);
-  }
-
-  .burger-menu__overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-  }
-  
-  .burger-menu__active .burger-menu__overlay {
-    display: block;
-    background-color: rgba(0, 0, 0, 0.5);
   }
 
   main {
@@ -907,11 +912,11 @@ footer {
     width: 100%;
   }
 
-  .burger-menu__nav {
+  .header__nav {
     margin: 160px 0 0 -20px;
   }  
 
-  .burger-menu__button {
+  .burger {
     left: 0;
   }  
 

@@ -171,22 +171,38 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    let button = menu.find('.burger-menu__button, .burger-menu__lines');
-    let links = menu.find('.burger-menu__link');
-    let overlay = menu.find('.burger-menu__overlay');
+    let button = menu.find('.burger, .burger__lines');
+    let links = menu.find('.header__link');
+    let overlay = menu.find('.header__overlay');
 
     button.on('click', (e) => {
       e.preventDefault();
+
+      // Проверяем, что мы на мобильном устройстве
+      if (window.innerWidth > 666) return;
+
       toggleMenu();
     });
 
-    links.on('click', () => toggleMenu());
+    links.on('click', () => {
+        if (window.innerWidth > 666) return;
+        toggleMenu();
+    });
+    
     overlay.on('click', () => toggleMenu());
 
-    function toggleMenu(){
-      menu.toggleClass('burger-menu__active');
+    // Закрываем меню при изменении размера окна
+    $(window).on('resize', function() {
+        if (window.innerWidth > 666 && menu.hasClass('burger__active')) {
+            menu.removeClass('burger__active');
+            $('body').css('overflow', 'visible');
+        }
+    });
 
-      if (menu.hasClass('burger-menu__active')) {
+    function toggleMenu(){
+      menu.toggleClass('burger__active');
+
+      if (menu.hasClass('burger__active')) {
         $('body').css('overflow', 'hidden');
       } else {
           $('body').css('overflow', 'visible');
@@ -195,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Запускаем бургер-меню
-  burgerMenu('.burger-menu');
+  burgerMenu('.header__bottom');
   console.log('Бургер-меню инициализировано!');
 
 

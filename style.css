@@ -37,12 +37,10 @@ ul {
 }
 
 .header__top {
-  position: relative;
   padding: 2rem 0;
   background: linear-gradient(to right, #2c3e50, #3498db); /* 6. Красивый градиент */
   color: white;
   text-align: center;
-  z-index: 22;
 }
 
 .header__bottom {
@@ -58,7 +56,7 @@ ul {
 }
 
 .header__item:not(:last-child) {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 
 .header__link {
@@ -67,13 +65,15 @@ ul {
 }
 
 .burger {
-  /* position: fixed;     */
   position: relative;
   left: 10px;
-  z-index: 30;
+  z-index: 100;
   display: none;
+  border: transparent;
   width: 80px;
   height: 80px;
+  background-color: transparent;
+  cursor: pointer;
   -webkit-transition: .4s;
   -moz-transition: .4s;
   -o-transition: .4s;
@@ -106,23 +106,25 @@ ul {
 .burger__lines::before {
   content: '';
   top: -12px;
+  left: 0;
 }
 
 .burger__lines::after {
   content: '';
   top: 12px;
+  left: 0;
 }
 
-.burger__active .burger__lines {
+.burger--active .burger__lines {
   background-color: transparent;
 }
 
-.burger__active .burger__lines::before {
+.burger--active .burger__lines::before {
   top: 0;
   transform: rotate(45deg);
 }
 
-.burger__active .burger__lines::after {
+.burger--active .burger__lines::after {
   top: 0;
   transform: rotate(-45deg);
 }
@@ -136,12 +138,6 @@ ul {
   height: 100%;
   z-index: 10;
 }
-
-.burger__active .header__overlay {
-  display: block;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 
 main {
   max-width: 1200px; /* 10. Ограничиваем ширину контента */
@@ -827,61 +823,84 @@ footer {
   }
 }  
 
-@media (max-width: 666px) {
-  .header {
+@media (max-width: 666px) {    
+  body {
+    padding-top: 300px;
+  }
+
+  header.header {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 999; /* Увеличьте z-index */
+    background-color: #2c3e50; /* Явно пропишите фон */
+  }  
+
+  .header__top {
+    position: relative;
+    /*Чтобы меню вылезла из под него*/
+    z-index: 1000;
+  }
+
+  .header__nav {
+    position: fixed;
+    top: -1000%;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Используйте viewport height */
+    background-color: #2c3e50;
+    z-index: 999; /* Должен быть как у хедера или выше */
+    overflow-y: auto; /* Добавьте скролл если нужно */
+    -webkit-transition: top .8s ease; 
+    -moz-transition: top .8s ease; 
+    -o-transition: top .8s ease; 
+    transition: top .8s ease; /* Более плавная анимация */
+  }
+
+  .header__nav--active {
+    top: 27%;
+  }
+
+  .overlay--active {
+    display: block;
+  }
+  
+  /* Исправьте z-index для оверлея */
+  .header__overlay {
+    z-index: 998;
+  }
+  
+  .burger {
+    z-index: 1000;
   }
 
   .header__top h1 {
-    width: 335px;
     margin: 0 auto;
+    padding: 0 20px; /* Добавьте боковые отступы */
+    width: auto; /* Не фиксируйте ширину */
+    max-width: 335px;
   }
 
   .header__bottom {
     padding: 0;
   }
 
+  .burger {
+    display: block;
+  } 
+
   .header__list {
     display: block;
     padding: 50px 0;
+    text-align: center;
   }
 
   .header__item:not(:last-child) {
     margin: 0 0 15px 0;
-  }
-
-  .burger {
-    display: block;
-  }  
-
-  .header__nav {
-    position: fixed;
-    top: -1000%;
-    display: flex;
-    flex-flow: column;
-    margin: 150px 0 0 -20px;
-    padding-top: 80px;
-    height: 100%;
-    background-color: #2c3e50;
-    overflow-y: auto;
-    z-index: 20;
-    -webkit-transition: 0.8s;
-    -moz-transition: 0.8s;
-    -o-transition: 0.8s;
-    transition: 0.8s;
-  }
-
-  .burger__active .header__nav {
-    top: 0;
-    -webkit-transition: 0.4s;
-    -moz-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-  }
+  }   
 
   .header__link {
+    display: block;
     padding: 30px;
     font-family: sans-serif;
     font-size: clamp(14px, 5vw, 32px);
@@ -895,14 +914,13 @@ footer {
   }
 
   main {
-    margin-top: 313px;
+    margin-top: 0;
     padding-top: 20px;/* Добавьте это от ИИ */
   }
 
   .contacts__form {
     margin: 0 auto;
     width: 95%;
-    z-index: -1;
   }
 }
 
@@ -910,17 +928,19 @@ footer {
 @media (max-width: 353px) {
   .header__top h1 {
     width: 100%;
-  }
-
-  .header__nav {
-    margin: 160px 0 0 -20px;
   }  
 
   .burger {
     left: 0;
   }  
-
-  main {
-    margin-top: 333px;
-  }
 }
+
+
+
+
+
+
+
+
+
+

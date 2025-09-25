@@ -13,8 +13,9 @@
     <meta property="og:image" content="картинка для поисковиков ссылка">
     <meta name="keywords" content="ИИ, уроки, домашка">
     <!-- //Для поиска в сети-->
-    <!-- Подключаем библиотеки через CDN -->
+    <!-- Подключаем библиотеки через CDN - jQuery сначала -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Затем другие библиотеки -->
     <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
     <title>Мой сайт-визитка</title> <!-- 3. Title в head -->
     <link rel="stylesheet" href="style.css">
@@ -26,9 +27,9 @@
         <p>Здесь я расскажу как с ИИ мы учимся верстать.</p>
       </div>
       <div class="header__bottom">
-        <a href="" class="header__button burger">
+        <button class="burger" type="button">
           <span class="burger__lines"></span>
-        </a>
+        </button>
         <nav class="header__nav">
           <ul class="header__list">
             <li class="header__item">
@@ -48,7 +49,7 @@
             </li>
           </ul>
         </nav>
-        <div class="header__overlay overlay"></div>
+        <div class="header__overlay"></div>
       </div>
     </header>
     <main>
@@ -700,8 +701,8 @@
       <section class="contacts" id="contacts">
         <h2 class="contacts__h2 h2">Связаться со мной</h2>
         <form class="contacts__form" method="POST" id="checkboxForm" aria-label="Здесь Вы можете заказать товар" novalidate="novalidate">
-          <input type="hidden" name="admin_email[]" value="lyaysan-3@mail.ru"><!--darki@mail.ru-->              
-          <input type="hidden" name="admin_email[]" value="lyaisan.333@yandex.ru"><!--darki@yandex.ru--> 
+          <input type="hidden" name="admin_email[]" value="darki@mail.ru"><!---->              
+          <input type="hidden" name="admin_email[]" value="darki@yandex.ru"><!----> 
           <input type="hidden" name="form_subject" value="Оставьте заявку forms">
           <div class="contacts__block">          
             <label class="contacts__label" for="name">Ваше имя:</label>

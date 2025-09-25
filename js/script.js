@@ -164,56 +164,125 @@ document.addEventListener('DOMContentLoaded', function () {
   
   
   // ==================== БУРГЕР-МЕНЮ ставим ниже ==================== 
-  function burgerMenu(selector) {
-    let menu = $(selector);
-    if (menu.length === 0) {
-      console.error('Бургер-меню не найдено!');
-      return;
-    }
+  // function burgerMenu(selector) {
+  //   let menu = $(selector);
+  //   if (menu.length === 0) {
+  //     console.error('Бургер-меню не найдено!');
+  //     return;
+  //   }
 
-    let button = menu.find('.burger, .burger__lines');
-    let links = menu.find('.header__link');
-    let overlay = menu.find('.header__overlay');
+  //   let button = menu.find('.burger, .burger__lines');
+  //   let links = menu.find('.header__link');
+  //   let overlay = menu.find('.header__overlay');
 
-    button.on('click', (e) => {
-      e.preventDefault();
+  //   button.on('click', (e) => {
+  //     e.preventDefault();
 
       // Проверяем, что мы на мобильном устройстве
-      if (window.innerWidth > 666) return;
+    //   if (window.innerWidth > 666) return;
 
-      toggleMenu();
-    });
+    //   toggleMenu();
+    // });
 
-    links.on('click', () => {
-        if (window.innerWidth > 666) return;
-        toggleMenu();
-    });
+    // links.on('click', () => {
+    //     if (window.innerWidth > 666) return;
+    //     toggleMenu();
+    // });
     
-    overlay.on('click', () => toggleMenu());
+    // overlay.on('click', () => toggleMenu());
 
     // Закрываем меню при изменении размера окна
-    $(window).on('resize', function() {
-        if (window.innerWidth > 666 && menu.hasClass('burger__active')) {
-            menu.removeClass('burger__active');
-            $('body').css('overflow', 'visible');
-        }
-    });
+  //   $(window).on('resize', function() {
+  //       if (window.innerWidth > 666 && menu.hasClass('burger__active')) {
+  //           menu.removeClass('burger__active');
+  //           $('body').css('overflow', 'visible');
+  //       }
+  //   });
 
-    function toggleMenu(){
-      menu.toggleClass('burger__active');
+  //   function toggleMenu(){
+  //     menu.toggleClass('burger__active');
 
-      if (menu.hasClass('burger__active')) {
-        $('body').css('overflow', 'hidden');
-      } else {
-          $('body').css('overflow', 'visible');
-        }
-    }
-  }
+  //     if (menu.hasClass('burger__active')) {
+  //       $('body').css('overflow', 'hidden');
+  //     } else {
+  //         $('body').css('overflow', 'visible');
+  //       }
+  //   }
+  // }
 
   // Запускаем бургер-меню
-  burgerMenu('.header__bottom');
-  console.log('Бургер-меню инициализировано!');
+  // burgerMenu('.header__bottom');
+  // console.log('Бургер-меню инициализировано!');
 
 
+
+
+  
+  
+            
+    const elements = {
+      burger: document.querySelector('.burger'),
+      headerNav: document.querySelector('.header__nav'),
+      overlay: document.querySelector('.header__overlay'),
+      links: document.querySelectorAll('.header__link')
+    };
+    
+    console.log('Найденные элементы:');
+    console.log('- burger:', elements.burger);
+    console.log('- header__nav:', elements.headerNav);
+    console.log('- overlay:', elements.overlay);
+    console.log('- links:', elements.links.length);
+    
+    function toggleMenu() {
+      const isActive = elements.burger.classList.contains('burger--active');
+        
+      if (!isActive) {
+        // Открываем меню
+        elements.burger.classList.add('burger--active');
+        elements.headerNav.classList.add('header__nav--active');
+        elements.overlay.classList.add('overlay--active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Закрываем меню
+        elements.burger.classList.remove('burger--active');
+        elements.headerNav.classList.remove('header__nav--active');
+        elements.overlay.classList.remove('overlay--active');
+        document.body.style.overflow = '';
+      }
+      
+      console.log('Состояние меню:', !isActive ? 'OPEN' : 'CLOSED');
+    }
+    
+    function closeMenu() {
+      elements.burger.classList.remove('burger--active');
+      elements.headerNav.classList.remove('header__nav--active');
+      elements.overlay.classList.remove('overlay--active');
+      document.body.style.overflow = '';
+      console.log('Меню закрыто');
+    }
+    
+    // Обработчики событий
+    if (elements.burger) {
+      elements.burger.addEventListener('click', toggleMenu);
+      console.log('✅ Бургер инициализирован');
+    }
+            
+    if (elements.overlay) {
+      elements.overlay.addEventListener('click', closeMenu);
+    }
+    
+    elements.links.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Закрытие меню при ресайзе окна
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 666) {
+        closeMenu();
+      }
+    });
+
+
+    
   
 });

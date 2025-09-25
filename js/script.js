@@ -163,63 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   
   
-  // ==================== БУРГЕР-МЕНЮ ставим ниже ==================== 
-  // function burgerMenu(selector) {
-  //   let menu = $(selector);
-  //   if (menu.length === 0) {
-  //     console.error('Бургер-меню не найдено!');
-  //     return;
-  //   }
-
-  //   let button = menu.find('.burger, .burger__lines');
-  //   let links = menu.find('.header__link');
-  //   let overlay = menu.find('.header__overlay');
-
-  //   button.on('click', (e) => {
-  //     e.preventDefault();
-
-      // Проверяем, что мы на мобильном устройстве
-    //   if (window.innerWidth > 666) return;
-
-    //   toggleMenu();
-    // });
-
-    // links.on('click', () => {
-    //     if (window.innerWidth > 666) return;
-    //     toggleMenu();
-    // });
-    
-    // overlay.on('click', () => toggleMenu());
-
-    // Закрываем меню при изменении размера окна
-  //   $(window).on('resize', function() {
-  //       if (window.innerWidth > 666 && menu.hasClass('burger__active')) {
-  //           menu.removeClass('burger__active');
-  //           $('body').css('overflow', 'visible');
-  //       }
-  //   });
-
-  //   function toggleMenu(){
-  //     menu.toggleClass('burger__active');
-
-  //     if (menu.hasClass('burger__active')) {
-  //       $('body').css('overflow', 'hidden');
-  //     } else {
-  //         $('body').css('overflow', 'visible');
-  //       }
-  //   }
-  // }
-
-  // Запускаем бургер-меню
-  // burgerMenu('.header__bottom');
-  // console.log('Бургер-меню инициализировано!');
-
-
-
-
-  
-  
-            
+  // ==================== БУРГЕР-МЕНЮ ставим ниже ====================   
     const elements = {
       burger: document.querySelector('.burger'),
       headerNav: document.querySelector('.header__nav'),
